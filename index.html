@@ -1,0 +1,217 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Cweshelezi Enterprise</title>
+  <style>
+    :root{--gold:#b78f2e;--dark:#222}
+    body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial; margin:0;background:#fff;color:var(--dark)}
+    header{background:linear-gradient(180deg,rgba(183,143,46,.06),transparent);padding:30px 20px;border-bottom:1px solid rgba(183,143,46,.12)}
+    .container{max-width:980px;margin:0 auto;padding:24px}
+    .brand{display:flex;align-items:center;gap:18px}
+    .logo{width:92px;height:92px;flex:0 0 92px;border-radius:8px;background:white;display:flex;align-items:center;justify-content:center;border:2px solid rgba(183,143,46,.15)}
+    .logo img{max-width:80px;max-height:80px}
+    h1{margin:0;font-size:28px;letter-spacing:1px;color:var(--gold)}
+    .tag{color:var(--gold);opacity:.9;margin-top:6px}
+    nav{margin-top:16px}
+    nav a{margin-right:12px;color:var(--dark);text-decoration:none;font-weight:600}
+    main{padding:28px 0}
+    .grid{display:grid;grid-template-columns:1fr 340px;gap:26px}
+    .products{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .card{border:1px solid rgba(0,0,0,.06);padding:12px;border-radius:8px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.03)}
+    .card img{width:100%;height:160px;object-fit:cover;border-radius:6px}
+    .card h3{margin:8px 0 4px;font-size:16px}
+    .muted{color:#666;font-size:14px}
+    .orderbox{position:sticky;top:20px;padding:16px;border-radius:10px;border:1px solid rgba(183,143,46,.12);background:linear-gradient(180deg,#fff,#fbf9f5)}
+    .orderbox h2{color:var(--gold);margin:0 0 8px}
+    label{display:block;margin:8px 0 6px;font-weight:600}
+    input[type=text],input[type=tel],textarea,select{width:100%;padding:8px;border:1px solid #ddd;border-radius:6px}
+    .qty{width:70px}
+    .row{display:flex;gap:8px;align-items:center}
+    .totals{font-weight:800;margin-top:10px}
+    button{width:100%;padding:10px;border-radius:8px;border:0;background:var(--gold);color:white;font-weight:700;cursor:pointer}
+    footer{border-top:1px solid rgba(0,0,0,.04);padding:18px 0;margin-top:28px}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}.products{grid-template-columns:1fr}.logo{width:74px;height:74px}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="container brand">
+    <div class="logo">
+      <img src="assets/logo.png" alt="Cweshelezi Enterprise logo">
+    </div>
+    <div>
+      <h1>CWESHELEZI ENTERPRISE</h1>
+      <div class="tag">PURE CLEANING. LASTING FRESHNESS.</div>
+      <div style="margin-top:8px;color:#444;font-size:14px">Durban (Ntuzuma) & Eshowe • 074 359 8427 / 074 376 4351 • Cweshelezienterprice@gmail.com</div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="grid">
+    <section>
+      <h2 style="color:var(--gold);margin:0 0 10px">Our Products</h2>
+      <div class="products">
+        <article class="card">
+          <img src="assets/airfresh.jpg" alt="Air Freshener">
+          <h3>Air Freshener — 50 ml</h3>
+          <div class="muted">R25</div>
+        </article>
+
+        <article class="card">
+          <img src="assets/pinegel.jpg" alt="Pine Gel">
+          <h3>Pine Gel — 1 Litre</h3>
+          <div class="muted">R30</div>
+        </article>
+
+        <article class="card">
+          <img src="assets/dish.jpg" alt="Dishwashing Liquid">
+          <h3>Dishwashing Liquid — 750 ml</h3>
+          <div class="muted">R20</div>
+        </article>
+
+        <article class="card">
+          <img src="assets/bleach.jpg" alt="Bleach">
+          <h3>Bleach — 750 ml</h3>
+          <div class="muted">R20</div>
+        </article>
+      </div>
+
+      <h3 style="margin-top:18px;color:var(--gold)">Combos</h3>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px">
+        <div class="card"><strong>Combo 1</strong><div>2 × Dishwashing Liquid — R35</div></div>
+        <div class="card"><strong>Combo 2</strong><div>2 × Pine Gel — R55</div></div>
+        <div class="card"><strong>Combo 3</strong><div>Pine Gel + Bleach + Dishwashing Liquid — R60</div></div>
+      </div>
+
+      <h3 style="margin-top:18px;color:var(--gold)">About Cweshelezi Enterprise</h3>
+      <div class="card" style="margin-top:10px">
+        <p>Cweshelezi Enterprise is a proudly South African company dedicated to providing high-quality, affordable cleaning detergents for homes and businesses. From our bases in Durban (Ntuzuma) and Eshowe, we manufacture a range of trusted cleaning products including Pine Gel, Dishwashing Liquid, Bleach, and Air Freshener — all designed to bring freshness, hygiene, and comfort into every space.</p>
+        <p><em>“At Cweshelezi Enterprise, we believe that cleanliness is more than a standard — it’s a lifestyle. Our goal is to empower households and communities with reliable cleaning solutions that are both effective and affordable. We are committed to excellence, innovation, and service that reflects integrity in everything we do.”</em><br>— <strong>Miss L.M. Nxumalo, Director</strong></p>
+      </div>
+    </section>
+
+    <aside>
+      <div class="orderbox">
+        <h2>Place an Order</h2>
+        <form id="orderForm" action="https://formsubmit.co/Cweshelezienterprice@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New order from website" />
+          <input type="hidden" name="_template" value="table" />
+
+          <label>Full name</label>
+          <input type="text" name="name" required>
+
+          <label>Phone number</label>
+          <input type="tel" name="phone" required>
+
+          <label>Delivery address (or 'Pickup')</label>
+          <textarea name="address" rows="2" required></textarea>
+
+          <label>Dishwashing Liquid (750 ml) — R20</label>
+          <div class="row"><input class="qty" type="number" name="dish_qty" id="dish_qty" min="0" value="0"></div>
+
+          <label>Pine Gel (1 L) — R30</label>
+          <div class="row"><input class="qty" type="number" name="pine_qty" id="pine_qty" min="0" value="0"></div>
+
+          <label>Bleach (750 ml) — R20</label>
+          <div class="row"><input class="qty" type="number" name="bleach_qty" id="bleach_qty" min="0" value="0"></div>
+
+          <label>Air Freshener (50 ml) — R25</label>
+          <div class="row"><input class="qty" type="number" name="air_qty" id="air_qty" min="0" value="0"></div>
+
+          <label>Choose Combo (optional)</label>
+          <select name="combo" id="combo">
+            <option value="none">None</option>
+            <option value="combo1">Combo 1 — 2× Dish — R35</option>
+            <option value="combo2">Combo 2 — 2× Pine — R55</option>
+            <option value="combo3">Combo 3 — Pine+Bleach+Dish — R60</option>
+          </select>
+
+          <div class="totals" id="totalText">Total: R0</div>
+
+          <label>Order notes (optional)</label>
+          <textarea name="notes" rows="2" placeholder="e.g. preferred delivery time"></textarea>
+
+          <input type="hidden" name="total" id="totalInput" value="0">
+
+          <button type="submit">Submit Order</button>
+        </form>
+
+        <div style="font-size:12px;margin-top:8px;color:#555">After submitting, you may be asked to verify the email address with formsubmit.co — that's a one-time step to enable delivery to your inbox.</div>
+      </div>
+
+      <div style="margin-top:12px;font-size:13px;color:#444">
+        <strong>Director</strong>
+        <div style="display:flex;gap:10px;align-items:center;margin-top:8px">
+          <img src="assets/director.jpg" alt="Director" style="width:64px;height:64px;object-fit:cover;border-radius:8px;border:1px solid #eee">
+          <div>
+            <div style="font-weight:700">Miss L.M. Nxumalo</div>
+            <div class="muted">Director • Cweshelezi Enterprise</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:14px">
+        <button id="whatsBtn" style="background:#25D366;border-radius:8px;padding:10px;color:white;font-weight:700;border:0;cursor:pointer">Order on WhatsApp</button>
+        <div style="font-size:12px;margin-top:8px;color:#666">Choose one of our numbers when the chat opens.</div>
+      </div>
+
+      <div style="margin-top:14px;color:#666;font-size:13px">
+        <strong>Locations</strong>
+        <div>Durban (Ntuzuma) & Eshowe</div>
+        <div style="margin-top:8px">
+          <!-- Google maps static embeds for each location (replace with live embeds after deployment if desired) -->
+          <iframe src="https://www.google.com/maps?q=Ntuzuma,+Durban&output=embed" style="width:100%;height:160px;border:0;margin-top:8px" loading="lazy"></iframe>
+          <iframe src="https://www.google.com/maps?q=Eshowe&output=embed" style="width:100%;height:160px;border:0;margin-top:8px" loading="lazy"></iframe>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="container">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap">
+    <div>© Cweshelezi Enterprise</div>
+    <div class="muted">Durban (Ntuzuma) & Eshowe • 074 359 8427 / 074 376 4351</div>
+  </div>
+</footer>
+
+<script>
+  const PRICES = {dish:20,pine:30,bleach:20,air:25,combo1:35,combo2:55,combo3:60};
+  const elems = {dish_qty:document.getElementById('dish_qty'),pine_qty:document.getElementById('pine_qty'),bleach_qty:document.getElementById('bleach_qty'),air_qty:document.getElementById('air_qty'),combo:document.getElementById('combo'),totalText:document.getElementById('totalText'),totalInput:document.getElementById('totalInput')}
+
+  function calculate(){
+    let total = 0;
+    total += Number(elems.dish_qty.value||0) * PRICES.dish;
+    total += Number(elems.pine_qty.value||0) * PRICES.pine;
+    total += Number(elems.bleach_qty.value||0) * PRICES.bleach;
+    total += Number(elems.air_qty.value||0) * PRICES.air;
+    const combo = elems.combo.value;
+    if(combo==='combo1') total += PRICES.combo1;
+    if(combo==='combo2') total += PRICES.combo2;
+    if(combo==='combo3') total += PRICES.combo3;
+    elems.totalText.textContent = 'Total: R' + total;
+    elems.totalInput.value = total;
+  }
+
+  Object.values(elems).forEach(el=>{ if(el && el.tagName) el.addEventListener('change',calculate)});
+  calculate();
+
+  document.getElementById('orderForm').addEventListener('submit', function(e){
+    const total = Number(elems.totalInput.value||0);
+    if(total<=0){ e.preventDefault(); alert('Please select at least one product or a combo before submitting.'); return false; }
+  });
+
+  // WhatsApp chooser
+  document.getElementById('whatsBtn').addEventListener('click', function(){
+    const pick = confirm('Message 074 359 8427? Click Cancel to message 074 376 4351.');
+    const num = pick ? '27743598427' : '27743764351';
+    const text = encodeURIComponent('Hello Cweshelezi Enterprise, I would like to order: ');
+    window.open('https://wa.me/' + num + '?text=' + text, '_blank');
+  });
+</script>
+</body>
+</html>
