@@ -92,6 +92,14 @@
         <p>Cweshelezi Enterprise is a proudly South African company dedicated to providing high-quality, affordable cleaning detergents for homes and businesses. From our bases in Durban (Ntuzuma) and Eshowe, we manufacture a range of trusted cleaning products including Pine Gel, Dishwashing Liquid, Bleach, and Air Freshener — all designed to bring freshness, hygiene, and comfort into every space.</p>
         <p><em>“At Cweshelezi Enterprise, we believe that cleanliness is more than a standard — it’s a lifestyle. Our goal is to empower households and communities with reliable cleaning solutions that are both effective and affordable. We are committed to excellence, innovation, and service that reflects integrity in everything we do.”</em><br>— <strong>Miss L.M. Nxumalo, Director</strong></p>
       </div>
+            <div style="margin-top:12px;font-size:13px;color:#444">
+        <strong>Director</strong>
+        <div style="display:flex;gap:10px;align-items:center;margin-top:8px">
+          <img src="assets/director.jpg" alt="Director" style="width:64px;height:64px;object-fit:cover;border-radius:8px;border:1px solid #eee">
+          <div>
+            <div style="font-weight:700">Miss L.M. Nxumalo</div>
+            <div class="muted">Director • Cweshelezi Enterprise</div>
+          </div>
     </section>
 
     <aside>
@@ -180,38 +188,86 @@
 </footer>
 
 <script>
-  const PRICES = {dish:20,pine:30,bleach:20,air:25,combo1:35,combo2:55,combo3:60};
-  const elems = {dish_qty:document.getElementById('dish_qty'),pine_qty:document.getElementById('pine_qty'),bleach_qty:document.getElementById('bleach_qty'),air_qty:document.getElementById('air_qty'),combo:document.getElementById('combo'),totalText:document.getElementById('totalText'),totalInput:document.getElementById('totalInput')}
+const PRICES = {dish:20,pine:30,bleach:20,air:25,combo1:35,combo2:55,combo3:60};
+const elems = {
+  dish_qty:document.getElementById('dish_qty'),
+  pine_qty:document.getElementById('pine_qty'),
+  bleach_qty:document.getElementById('bleach_qty'),
+  air_qty:document.getElementById('air_qty'),
+  combo:document.getElementById('combo'),
+  totalText:document.getElementById('totalText'),
+  totalInput:document.getElementById('totalInput')
+};
 
-  function calculate(){
-    let total = 0;
-    total += Number(elems.dish_qty.value||0) * PRICES.dish;
-    total += Number(elems.pine_qty.value||0) * PRICES.pine;
-    total += Number(elems.bleach_qty.value||0) * PRICES.bleach;
-    total += Number(elems.air_qty.value||0) * PRICES.air;
-    const combo = elems.combo.value;
-    if(combo==='combo1') total += PRICES.combo1;
-    if(combo==='combo2') total += PRICES.combo2;
-    if(combo==='combo3') total += PRICES.combo3;
-    elems.totalText.textContent = 'Total: R' + total;
-    elems.totalInput.value = total;
+function calculate(){
+  let total = 0;
+  total += Number(elems.dish_qty.value||0) * PRICES.dish;
+  total += Number(elems.pine_qty.value||0) * PRICES.pine;
+  total += Number(elems.bleach_qty.value||0) * PRICES.bleach;
+  total += Number(elems.air_qty.value||0) * PRICES.air;
+  const combo = elems.combo.value;
+  if(combo==='combo1') total += PRICES.combo1;
+  if(combo==='combo2') total += PRICES.combo2;
+  if(combo==='combo3') total += PRICES.combo3;
+  elems.totalText.textContent = 'Total: R' + total;
+  elems.totalInput.value = total;
+}
+Object.values(elems).forEach(el=>{ if(el && el.tagName) el.addEventListener('change',calculate); });
+calculate();
+
+// Combined WhatsApp message builder
+function buildWhatsAppMessage(){
+  const name = document.querySelector('input[name="name"]').value;
+  const phone = document.querySelector('input[name="phone"]').value;
+  const address = document.querySelector('textarea[name="address"]').value;
+  const dish = document.getElementById('dish_qty').value;
+  const pine = document.getElementById('pine_qty').value;
+  const bleach = document.getElementById('bleach_qty').value;
+  const air = document.getElementById('air_qty').value;
+  const combo = document.getElementById('combo').value;
+  const notes = document.querySelector('textarea[name="notes"]').value;
+  const total = document.getElementById('totalInput').value;
+
+  let message = `Hello Cweshelezi Enterprise,%0A%0A`;
+  message += `My name: ${name}%0A`;
+  message += `Phone: ${phone}%0A`;
+  message += `Address: ${address}%0A%0A`;
+  message += `🧴 Order details:%0A`;
+  if(dish>0) message += `Dishwashing Liquid ×${dish}%0A`;
+  if(pine>0) message += `Pine Gel ×${pine}%0A`;
+  if(bleach>0) message += `Bleach ×${bleach}%0A`;
+  if(air>0) message += `Air Freshener ×${air}%0A`;
+  if(combo!=='none') message += `Combo: ${combo}%0A`;
+  if(notes) message += `%0A📝 Notes: ${notes}%0A`;
+  message += `%0A💰 Total: R${total}%0A%0AThank you!`;
+  return message;
+}
+
+// WhatsApp button click
+document.getElementById('whatsBtn').addEventListener('click', function(){
+  const pick = confirm('Message 074 359 8427? Click Cancel to message 074 376 4351.');
+  const num = pick ? '27743598427' : '27743764351';
+  const message = buildWhatsAppMessage();
+  window.open('https://wa.me/' + num + '?text=' + message, '_blank');
+});
+
+// When user submits the form (email), also send WhatsApp automatically
+document.getElementById('orderForm').addEventListener('submit', function(e){
+  const total = Number(elems.totalInput.value||0);
+  if(total<=0){
+    e.preventDefault();
+    alert('Please select at least one product or combo before submitting.');
+    return false;
   }
 
-  Object.values(elems).forEach(el=>{ if(el && el.tagName) el.addEventListener('change',calculate)});
-  calculate();
-
-  document.getElementById('orderForm').addEventListener('submit', function(e){
-    const total = Number(elems.totalInput.value||0);
-    if(total<=0){ e.preventDefault(); alert('Please select at least one product or a combo before submitting.'); return false; }
-  });
-
-  // WhatsApp chooser
-  document.getElementById('whatsBtn').addEventListener('click', function(){
+  // Small delay to ensure formsubmit sends first, then WhatsApp opens
+  setTimeout(()=>{
     const pick = confirm('Message 074 359 8427? Click Cancel to message 074 376 4351.');
-    const num = pick ? '27743598427' : '27676694465';
-    const text = encodeURIComponent('Hello Cweshelezi Enterprise, I would like to order: ');
-    window.open('https://wa.me/' + num + '?text=' + text, '_blank');
-  });
+    const num = pick ? '27743598427' : '27743764351';
+    const message = buildWhatsAppMessage();
+    window.open('https://wa.me/' + num + '?text=' + message, '_blank');
+  }, 1000);
+});
 </script>
 </body>
 </html>
